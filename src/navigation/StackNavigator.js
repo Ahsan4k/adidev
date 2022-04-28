@@ -5,6 +5,8 @@ import Home from '../Screens/Home';
 import Verizon from '../Screens/Verizon';
 import BestBuy from '../Screens/BestBuy';
 import Carrier from '../Screens/Carrier';
+import BreakingBad from '../Screens/BreakingBad';
+import Details from '../Screens/Details';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,6 +31,16 @@ export default function StackNavigator() {
       <Stack.Screen
         name="Carrier"
         component={Carrier}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="BreakingBad"
+        component={BreakingBad}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Details"
+        component={Details}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

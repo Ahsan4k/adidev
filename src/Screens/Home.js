@@ -19,6 +19,10 @@ export default function Home(props) {
         title="Carrier 360"
         onPress={() => props.navigation.navigate('Carrier')}
       />
+      <Button
+        title="BreakingBad"
+        onPress={() => props.navigation.navigate('BreakingBad')}
+      />
     </View>
   );
 }
