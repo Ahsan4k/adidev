@@ -18,7 +18,35 @@ const BreakingBad = props => {
   const [loading, isLoading] = React.useState(false);
   const [data, setData] = React.useState([]);
 
-  //   async function movies() {
+  async function movies() {
+    try {
+      isLoading(true);
+      const response = await fetch(
+        'https://breakingbadapi.com/api/characters',
+        {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        },
+      );
+      const result = await response.json();
+      if (result) {
+        setData(result);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+    isLoading(false);
+  }
+
+  React.useEffect(() => {
+    movies();
+  }, []);
+
+  // React.useEffect(() => {
+  //   const unsubscribe = props.navigation.addListener('focus', async () => {
   //     try {
   //       isLoading(true);
   //       const response = await fetch(
@@ -39,36 +67,16 @@ const BreakingBad = props => {
   //       console.log(e);
   //     }
   //     isLoading(false);
-  //   }
+  //   });
 
-  //   React.useEffect(() => movies, []);
+  //   return unsubscribe;
+  // }, [props.navigation]);
 
-  React.useEffect(() => {
-    const unsubscribe = props.navigation.addListener('focus', async () => {
-      try {
-        isLoading(true);
-        const response = await fetch(
-          'https://breakingbadapi.com/api/characters',
-          {
-            method: 'GET',
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-            },
-          },
-        );
-        const result = await response.json();
-        if (result) {
-          setData(result);
-        }
-      } catch (e) {
-        console.log(e);
-      }
-      isLoading(false);
-    });
+  // React.useEffect(() => {
+  //   const unsubscribe = props.navigation.addListener('focus', () => movies());
 
-    return unsubscribe;
-  }, [props.navigation]);
+  //   return unsubscribe;
+  // }, [props.navigation]);
 
   if (loading) {
     return (
